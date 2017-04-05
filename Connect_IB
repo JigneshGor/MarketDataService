@@ -1,0 +1,9 @@
+import my_ib
+from my_ib import livebroker
+
+def get_active_orders():
+    lb = livebroker.LiveBroker()
+    print(lb.getActiveOrders())
+
+get_active_orders()
+
