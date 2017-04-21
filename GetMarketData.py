@@ -1,9 +1,10 @@
 from urllib.request import urlopen
 import time
 import datetime
+import threading, time
 
 tickers = ['FB', 'GOOG', 'MSFT', 'AMZN', 'AAPL', 'VDE', 'JDST', 'JNUG', 'ERX', 'ERY', 'UCO', 'SCO', 'UGAZ', 'DGAZ']
-ranges = ['1d', '10d', '20d', '1y']
+ranges = ['1d'] #, '10d', '20d', '1y']
 
 def get_ticker_data(ticker, range):
      try:
@@ -46,4 +47,6 @@ def get_ticker_data(ticker, range):
 
 for ticker in tickers:
     for range in ranges:
-        get_ticker_data(ticker, range)
+        threading.Thread(target=get_ticker_data, args=(ticker, range)).start()
+
+
